@@ -1,13 +1,21 @@
 import styled from "@emotion/native";
-import { SafeAreaView, Image, View, TouchableOpacity } from "react-native";
+import { SafeAreaView, Image, View, TouchableOpacity, ScrollView } from "react-native";
 import { Text } from "react-native-paper";
 import theme from "../../styles/theme";
 
 export const SafeContainer = styled(SafeAreaView)`
   flex: 1;
+  background-color: ${theme.colors.background};
+`;
+
+export const ScrollContainer = styled(ScrollView)`
+  flex: 1;
+`;
+
+export const ContentContainer = styled(View)`
+  flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: ${theme.colors.background};
   padding: 20px;
 `;
 

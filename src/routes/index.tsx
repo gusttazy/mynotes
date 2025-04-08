@@ -4,6 +4,8 @@ import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/
 import { View, ActivityIndicator } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import theme from "../styles/theme";
+import { supabase } from "../config/supabase";
+import { Session } from "@supabase/supabase-js";
 
 // Lazy loading das telas
 const Home = React.lazy(() => import("../screens/Home"));
@@ -26,6 +28,8 @@ SplashScreen.preventAutoHideAsync();
 
 const Routes = () => {
   const [isReady, setIsReady] = useState(false);
+  const [session, setSession] = useState<Session | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const loadResourcesAsync = useCallback(async () => {
     try {
@@ -40,7 +44,20 @@ const Routes = () => {
     loadResourcesAsync();
   }, [loadResourcesAsync]);
 
-  if (!isReady) {
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setLoading(false);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  if (!isReady || loading) {
     return (
       <View
         style={{
@@ -58,7 +75,7 @@ const Routes = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName={session ? "AppScreen" : "Home"}
         screenOptions={{
           headerShown: false,
           gestureEnabled: true,
@@ -72,11 +89,20 @@ const Routes = () => {
           },
         }}
       >
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="AppScreen" component={AppScreen} />
-        <Stack.Screen name="ActivityDetails" component={ActivityDetails} />
+        {!session ? (
+          // Rotas para usuários não autenticados
+          <>
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Register" component={Register} />
+          </>
+        ) : (
+          // Rotas para usuários autenticados
+          <>
+            <Stack.Screen name="AppScreen" component={AppScreen} />
+            <Stack.Screen name="ActivityDetails" component={ActivityDetails} />
+          </>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

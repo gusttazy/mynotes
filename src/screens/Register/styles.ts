@@ -1,13 +1,21 @@
 import styled from "@emotion/native";
-import { SafeAreaView, Image, View, TouchableOpacity } from "react-native";
+import { SafeAreaView, Image, View, TouchableOpacity, ScrollView } from "react-native";
 import { Text } from "react-native-paper";
 import theme from "../../styles/theme";
 
 export const SafeContainer = styled(SafeAreaView)`
   flex: 1;
+  background-color: ${theme.colors.background};
+`;
+
+export const ScrollContainer = styled(ScrollView)`
+  flex: 1;
+`;
+
+export const ContentContainer = styled(View)`
+  flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: ${theme.colors.background};
   padding: 20px;
 `;
 
@@ -35,8 +43,8 @@ export const Subtitle = styled(Text)`
 
 export const InputContainer = styled(View)`
   width: 100%;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 20px;
+  margin-bottom: 30px;
 `;
 
 export const ButtonContainer = styled(View)`
@@ -49,7 +57,7 @@ export const LoginContainer = styled(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 15px;
+  margin-top: 20px;
 `;
 
 export const LoginText = styled(Text)`
