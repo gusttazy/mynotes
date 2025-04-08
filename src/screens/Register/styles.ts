@@ -27,7 +27,7 @@ export const Title = styled(Text)`
 export const Subtitle = styled(Text)`
   font-size: 14px;
   color: ${theme.colors.roxoSecundario};
-  font-family: ${theme.fonts.medium};
+  font-family: ${theme.fonts.semiBold};
   text-align: center;
   margin-top: 5px;
   margin-bottom: 20px;

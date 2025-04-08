@@ -12,7 +12,7 @@ export const StyledInput = styled(TextInput)`
   background-color: ${theme.colors.cardsFundo};
   border-radius: 8px;
   padding: 10px;
-  font-size: 16px;
+  font-size: 15px;
   color: ${theme.colors.roxoSecundario};
-  font-family: ${theme.fonts.semiBold};
+  font-family: ${theme.fonts.medium};
 `;

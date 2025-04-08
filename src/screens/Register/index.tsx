@@ -54,6 +54,14 @@ export default function Register({ navigation }: RegisterProps) {
       <Subtitle>Preencha com suas informações</Subtitle>
 
       <Input
+        placeholder="Nome completo"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+        autoCapitalize="none"
+      />
+
+      <Input
         placeholder="E-mail"
         value={email}
         onChangeText={setEmail}
@@ -62,24 +70,9 @@ export default function Register({ navigation }: RegisterProps) {
       />
 
       <Input
-        placeholder="Confirmar e-mail"
-        value={confirmEmail}
-        onChangeText={setConfirmEmail}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
-
-      <Input
         placeholder="Senha"
         value={password}
         onChangeText={setPassword}
-        secureTextEntry
-      />
-
-      <Input
-        placeholder="Confirmar senha"
-        value={confirmPassword}
-        onChangeText={setConfirmPassword}
         secureTextEntry
       />
 
