@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/stack";
 import { View, ActivityIndicator } from "react-native";
-import { Asset } from "expo-asset";
-import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import {
-  Raleway_400Regular,
-  Raleway_500Medium,
-  Raleway_600SemiBold,
-  Raleway_700Bold,
-  Raleway_800ExtraBold,
-} from "@expo-google-fonts/raleway";
-import Home from "../screens/Home";
-import Login from "../screens/Login";
-import Register from "../screens/Register";
-import AppScreen from "../screens/AppScreen";
-import ActivityDetails from "../screens/ActivityDetails";
 import theme from "../styles/theme";
+
+// Lazy loading das telas
+const Home = React.lazy(() => import("../screens/Home"));
+const Login = React.lazy(() => import("../screens/Login"));
+const Register = React.lazy(() => import("../screens/Register"));
+const AppScreen = React.lazy(() => import("../screens/AppScreen"));
+const ActivityDetails = React.lazy(() => import("../screens/ActivityDetails"));
 
 export type RootStackParamList = {
   Home: undefined;
@@ -34,28 +27,18 @@ SplashScreen.preventAutoHideAsync();
 const Routes = () => {
   const [isReady, setIsReady] = useState(false);
 
-  const loadResourcesAsync = async () => {
+  const loadResourcesAsync = useCallback(async () => {
     try {
-      await Font.loadAsync({
-        Raleway_400Regular,
-        Raleway_500Medium,
-        Raleway_600SemiBold,
-        Raleway_700Bold,
-        Raleway_800ExtraBold,
-      });
-
-      await Asset.loadAsync([require("../assets/images/login.png")]);
-    } catch (error) {
-      console.warn(error);
-    } finally {
       setIsReady(true);
       await SplashScreen.hideAsync();
+    } catch (error) {
+      console.warn(error);
     }
-  };
+  }, []);
 
   useEffect(() => {
     loadResourcesAsync();
-  }, []);
+  }, [loadResourcesAsync]);
 
   if (!isReady) {
     return (
@@ -81,8 +64,8 @@ const Routes = () => {
           gestureEnabled: true,
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
           transitionSpec: {
-            open: { animation: "timing", config: { duration: 400 } },
-            close: { animation: "timing", config: { duration: 400 } },
+            open: { animation: "timing", config: { duration: 300 } },
+            close: { animation: "timing", config: { duration: 300 } },
           },
           cardStyle: {
             backgroundColor: theme.colors.background,

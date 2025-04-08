@@ -33,6 +33,12 @@ export const Subtitle = styled(Text)`
   margin-bottom: 20px;
 `;
 
+export const InputContainer = styled(View)`
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 20px;
+`;
+
 export const ButtonContainer = styled(View)`
   width: 100%;
   margin-top: 20px;

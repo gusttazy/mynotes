@@ -13,8 +13,8 @@ export const SafeContainer = styled(SafeAreaView)`
 
 export const HeaderImage = styled(Image)`
   width: 100%;
-  height: 50%;
-  margin-bottom: -40px;
+  height: 30%;
+  margin-bottom: 10px;
 `;
 
 export const Title = styled(Text)`
@@ -27,10 +27,16 @@ export const Title = styled(Text)`
 export const Subtitle = styled(Text)`
   font-size: 14px;
   color: ${theme.colors.roxoSecundario};
-  font-family: ${theme.fonts.medium};
+  font-family: ${theme.fonts.semiBold};
   text-align: center;
   margin-top: 5px;
   margin-bottom: 20px;
+`;
+
+export const InputContainer = styled(View)`
+  width: 100%;
+  gap: 20px;
+  margin-bottom: 30px;
 `;
 
 export const ButtonContainer = styled(View)`
@@ -43,7 +49,7 @@ export const RegisterContainer = styled(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 15px;
+  margin-top: 20px;
 `;
 
 export const RegisterText = styled(Text)`
@@ -52,9 +58,7 @@ export const RegisterText = styled(Text)`
   font-family: ${theme.fonts.medium};
 `;
 
-export const RegisterLink = styled(TouchableOpacity)`
-  padding-left: 5px;
-`;
+export const RegisterLink = styled(TouchableOpacity)``;
 
 export const RegisterLinkText = styled(Text)`
   color: ${theme.colors.roxoPrincipal};

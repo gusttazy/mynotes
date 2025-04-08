@@ -3,16 +3,22 @@ import { TextInput, View } from "react-native";
 import theme from "../../styles/theme";
 
 export const Container = styled(View)`
-  width: 90%;
-  margin-bottom: 15px;
+  flex-direction: row;
+  align-items: center;
+  background-color: #F4F2FF;
+  border-radius: 12px;
+  padding: 0 10px;
+  height: 50px;
 `;
 
 export const StyledInput = styled(TextInput)`
-  height: 60px;
-  background-color: ${theme.colors.cardsFundo};
-  border-radius: 8px;
-  padding: 10px;
-  font-size: 15px;
+  flex: 1;
   color: ${theme.colors.roxoSecundario};
-  font-family: ${theme.fonts.medium};
+  font-family: ${theme.fonts.regular};
+  font-size: 16px;
+  margin-left: 10px;
+`;
+
+export const IconContainer = styled(View)`
+  padding: 8px;
 `;

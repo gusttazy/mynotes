@@ -17,9 +17,9 @@ export default function Home({ navigation }: HomeProps) {
     <SafeContainer>
       <HeaderImage source={require("../../assets/images/home.png")} />
 
-      <Title>Bem-vindo ao Checklist+</Title>
+      <Title>Bem-vindo ao MyNotes</Title>
       <Subtitle>
-        Gerencie suas tarefas de maneira personalizada, organizada e eficiente.
+        Organize suas ideias, tarefas e projetos de forma prática e intuitiva.
       </Subtitle>
 
       <ButtonContainer>
