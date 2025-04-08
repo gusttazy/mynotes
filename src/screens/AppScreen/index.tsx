@@ -4,18 +4,19 @@ import { Feather } from "@expo/vector-icons";
 import {
   SafeContainer,
   HeaderContainer,
+  HeaderContent,
   GreetingText,
   SearchContainer,
-  SearchInput,
-  SearchIcon,
   EmptyListContainer,
   EmptyListText,
   LogoutButton,
+  ContentContainer,
 } from "./styles";
 import ActivityCard from "../../components/ActivityCard";
 import AddTaskButton from "../../components/AddTaskButton";
 import ActivityModal from "../../components/ModalActivity";
 import DeleteConfirmationModal from "../../components/ModalActivityRemove";
+import { Input } from "../../components/Input";
 import { supabase } from "../../config/supabase";
 import theme from "../../styles/theme";
 
@@ -117,52 +118,49 @@ export default function Home({ navigation }: AppScreenProps) {
   return (
     <SafeContainer>
       <HeaderContainer>
-        <GreetingText>Olá, Gustavo!</GreetingText>
-        <LogoutButton onPress={handleLogout}>
-          <Feather name="log-out" size={32} color={theme.colors.roxoPrincipal} />
-        </LogoutButton>
+        <HeaderContent>
+          <GreetingText>Minhas Atividades</GreetingText>
+          <LogoutButton onPress={handleLogout}>
+            <Feather name="log-out" size={24} color={theme.colors.white} />
+          </LogoutButton>
+        </HeaderContent>
+
+        <SearchContainer>
+          <Input
+            placeholder="Pesquisar listas"
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+            left={<Feather name="search" size={20} color={theme.colors.roxoSecundario} />}
+            right={
+              searchQuery !== "" ? (
+                <Feather
+                  name="x"
+                  size={20}
+                  color={theme.colors.roxoSecundario}
+                  onPress={() => setSearchQuery("")}
+                />
+              ) : undefined
+            }
+          />
+        </SearchContainer>
       </HeaderContainer>
 
-      <SearchContainer>
-        <SearchIcon name="search" size={20} />
-        <SearchInput
-          placeholder="Pesquisar listas"
-          value={searchQuery}
-          onChangeText={setSearchQuery}
-          placeholderTextColor="#a69fca"
+      <ContentContainer>
+        <FlatList
+          data={filteredActivities}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          ListEmptyComponent={renderEmptyList}
+          showsVerticalScrollIndicator={false}
         />
-        {searchQuery !== "" && (
-          <Feather
-            name="x"
-            size={20}
-            color="#8162DA"
-            onPress={() => setSearchQuery("")}
-            style={{ padding: 8 }}
-          />
-        )}
-      </SearchContainer>
-
-      <FlatList
-        data={filteredActivities}
-        keyExtractor={(item) => item.id}
-        renderItem={renderItem}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          paddingBottom: 100,
-          flexGrow: 1,
-          justifyContent: activities.length === 0 ? "center" : "flex-start",
-        }}
-        ListEmptyComponent={renderEmptyList}
-      />
+      </ContentContainer>
 
       <AddTaskButton onPress={handleAddActivity} />
-
       <ActivityModal
         visible={modalVisible}
         onClose={handleCloseModal}
         onSave={handleSaveActivity}
       />
-
       <DeleteConfirmationModal
         visible={deleteModalVisible}
         onClose={() => setDeleteModalVisible(false)}

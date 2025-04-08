@@ -1,7 +1,6 @@
 import styled from "@emotion/native";
-import { SafeAreaView, View, TextInput } from "react-native";
+import { SafeAreaView, View } from "react-native";
 import { Text } from "react-native-paper";
-import { Feather } from "@expo/vector-icons";
 import theme from "../../styles/theme";
 
 export const SafeContainer = styled(SafeAreaView)`
@@ -10,46 +9,38 @@ export const SafeContainer = styled(SafeAreaView)`
 `;
 
 export const HeaderContainer = styled(View)`
-  margin-top: 40px;
-  margin-bottom: 15px;
+  background-color: ${theme.colors.roxoPrincipal};
+  padding: 20px;
+  padding-top: 60px;
+  padding-bottom: 30px;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+`;
+
+export const HeaderContent = styled(View)`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  margin-bottom: 20px;
 `;
 
 export const GreetingText = styled(Text)`
-  font-size: 40px;
-  color: ${theme.colors.roxoPrincipal};
-  font-family: ${theme.fonts.extraBold};
+  font-size: 30px;
+  color: ${theme.colors.white};
+  font-family: ${theme.fonts.bold};
 `;
 
 export const LogoutButton = styled.TouchableOpacity`
-  paddingTop: 10px;
-  paddingRight: 8px;
+  padding: 8px;
 `;
 
 export const SearchContainer = styled(View)`
-  flex-direction: row;
-  align-items: center;
-  background-color: #F4F2FF;
-  border-radius: 12px;
-  padding: 0 10px;
-  margin-bottom: 20px;
-  margin: 0 20px;
+  margin-top: 10px;
 `;
 
-export const SearchIcon = styled(Feather)`
-  color: ${theme.colors.roxoSecundario};
-  margin-right: 10px;
-`;
-
-export const SearchInput = styled(TextInput)`
+export const ContentContainer = styled(View)`
   flex: 1;
-  height: 50px;
-  color: ${theme.colors.roxoSecundario};
-  font-family: ${theme.fonts.regular};
-  font-size: 16px;
+  padding: 20px;
 `;
 
 export const EmptyListContainer = styled(View)`

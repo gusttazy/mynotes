@@ -7,11 +7,15 @@ export const ActivityCardContainer = styled(TouchableOpacity)`
   background-color: #F4F2FF;
   border-radius: 16px;
   padding: 60px;
-  margin-bottom: 16px;
+  margin: 8px 20px;
+  width: auto;
+  min-height: 80px;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ActivityText = styled(Text)`
-  font-size: 25px;
+  font-size: 20px;
   color: ${theme.colors.roxoPrincipal};
   font-family: ${theme.fonts.bold};
   text-align: center;
