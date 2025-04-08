@@ -7,18 +7,26 @@ import theme from "../../styles/theme";
 export const SafeContainer = styled(SafeAreaView)`
   flex: 1;
   background-color: ${theme.colors.background};
-  padding: 20px;
 `;
 
 export const HeaderContainer = styled(View)`
   margin-top: 40px;
   margin-bottom: 15px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 `;
 
 export const GreetingText = styled(Text)`
   font-size: 40px;
   color: ${theme.colors.roxoPrincipal};
   font-family: ${theme.fonts.extraBold};
+`;
+
+export const LogoutButton = styled.TouchableOpacity`
+  paddingTop: 10px;
+  paddingRight: 8px;
 `;
 
 export const SearchContainer = styled(View)`
@@ -28,6 +36,7 @@ export const SearchContainer = styled(View)`
   border-radius: 12px;
   padding: 0 10px;
   margin-bottom: 20px;
+  margin: 0 20px;
 `;
 
 export const SearchIcon = styled(Feather)`

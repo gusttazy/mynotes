@@ -10,11 +10,14 @@ import {
   SearchIcon,
   EmptyListContainer,
   EmptyListText,
+  LogoutButton,
 } from "./styles";
 import ActivityCard from "../../components/ActivityCard";
 import AddTaskButton from "../../components/AddTaskButton";
 import ActivityModal from "../../components/ModalActivity";
 import DeleteConfirmationModal from "../../components/ModalActivityRemove";
+import { supabase } from "../../config/supabase";
+import theme from "../../styles/theme";
 
 type AppScreenProps = {
   navigation: any;
@@ -88,6 +91,14 @@ export default function Home({ navigation }: AppScreenProps) {
     setActivityToDelete(null);
   };
 
+  const handleLogout = async () => {
+    try {
+      await supabase.auth.signOut();
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possível fazer logout. Tente novamente.");
+    }
+  };
+
   const renderItem = ({ item }: { item: Activity }) => (
     <ActivityCard
       title={item.title}
@@ -107,6 +118,9 @@ export default function Home({ navigation }: AppScreenProps) {
     <SafeContainer>
       <HeaderContainer>
         <GreetingText>Olá, Gustavo!</GreetingText>
+        <LogoutButton onPress={handleLogout}>
+          <Feather name="log-out" size={32} color={theme.colors.roxoPrincipal} />
+        </LogoutButton>
       </HeaderContainer>
 
       <SearchContainer>

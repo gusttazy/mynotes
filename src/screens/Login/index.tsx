@@ -41,11 +41,8 @@ export default function Login({ navigation }: LoginProps) {
       });
 
       if (error) throw error;
-
-      navigation.navigate("AppScreen");
     } catch (error) {
       Alert.alert("Erro", "Email ou senha inválidos");
-    } finally {
       setLoading(false);
     }
   };

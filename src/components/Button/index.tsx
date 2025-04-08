@@ -13,6 +13,7 @@ export function ButtonHome({ title, onPress, style, disabled }: ButtonProps) {
       labelStyle={{ 
         fontSize: 20, 
         fontFamily: theme.fonts.extraBold,
+        color: theme.colors.background,
       }} 
     >
       {title}
