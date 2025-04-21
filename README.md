@@ -1,4 +1,4 @@
-# Checklist App
+# Notes App
 
 ## 🚀 Status do Projeto
 O projeto está em desenvolvimento ativo. Novas funcionalidades e melhorias estão sendo implementadas constantemente.
