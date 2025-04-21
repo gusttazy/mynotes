@@ -11,8 +11,8 @@
 ## 📸 Preview do Projeto
 
 <p align="center">
-  <video src="./public/app-preview.webm" controls width="280"></video><br />
-  <small>🎥 Apresentação em vídeo do aplicativo</small>
+  <img src="./public/app-preview.gif" alt="Preview do aplicativo" width="280" /><br />
+  <small>🎞️ Visualização animada do aplicativo em funcionamento</small>
 </p>
 
 ---
