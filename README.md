@@ -1,4 +1,21 @@
-# Checklist App
+<p align="center">
+  <img src="./public/header.jpg" alt="Header do Projeto" width="100%" />
+</p>
+
+<h1 align="center">📝 MyNotes App</h1>
+
+<p align="center"><i>Uma aplicação de anotações intuitiva, acessível e com funcionalidades inteligentes, feita com ❤️ usando React Native.</i></p>
+
+---
+
+## 📸 Preview do Projeto
+
+<p align="center">
+  <video src="./public/app-preview.webm" controls width="280"></video><br />
+  <small>🎥 Apresentação em vídeo do aplicativo</small>
+</p>
+
+---
 
 ## 🚀 Status do Projeto
 
@@ -53,4 +70,6 @@ Este é um projeto acadêmico em desenvolvimento.
 ---
 
 ## 📄 Licença
-Este projeto está sob a licença MIT. 
+
+Este projeto está licenciado sob a licença MIT.  
+Consulte o arquivo [LICENSE](./LICENSE) para mais detalhes.
