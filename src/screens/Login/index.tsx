@@ -14,8 +14,8 @@ import {
   ContentContainer,
 } from "./styles";
 import { Input } from "../../components/Input";
-import { ButtonHome } from "../../components/Button";
-import { BackButton } from "../../components/BackButton";
+import { Button } from "../../components/Button";
+import { ArrowBack } from "../../components/ArrowBack";
 import { Feather } from "@expo/vector-icons";
 import { Keyboard, KeyboardAvoidingView, Platform, Alert } from "react-native";
 import { supabase } from "../../config/supabase";
@@ -58,11 +58,11 @@ export default function Login({ navigation }: LoginProps) {
           keyboardShouldPersistTaps="handled"
         >
           <ContentContainer>
-            <BackButton />
+            <ArrowBack />
 
-            <HeaderImage source={require("../../assets/images/login.png")} />
+            <HeaderImage source={require("../../images/login.png")} />
 
-            <Title>Entre na sua conta</Title>
+            <Title>Fazer login</Title>
             <Subtitle>Preencha com suas informações</Subtitle>
 
             <InputContainer>
@@ -93,8 +93,8 @@ export default function Login({ navigation }: LoginProps) {
             </InputContainer>
 
             <ButtonContainer>
-              <ButtonHome 
-                title={loading ? "Carregando..." : "Fazer Login"} 
+              <Button
+                title={loading ? "Carregando..." : "Entrar"}
                 onPress={handleLogin}
                 disabled={loading}
               />

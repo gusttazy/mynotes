@@ -27,11 +27,10 @@ export const HeaderImage = styled(Image)`
 `;
 
 export const Title = styled(Text)`
-  font-size: 35px;
+  font-size: 50px;
   color: ${theme.colors.roxoPrincipal};
   font-family: ${theme.fonts.extraBold};
   text-align: center;
-  margin-bottom: 5px;
 `;
 
 export const Subtitle = styled(Text)`
@@ -58,8 +57,7 @@ export const RegisterContainer = styled(View)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 30px;
-  margin-bottom: 20px;
+  margin-top: 20px;
 `;
 
 export const RegisterText = styled(Text)`

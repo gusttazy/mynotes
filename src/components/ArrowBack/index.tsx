@@ -1,16 +1,15 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
 import { ArrowLeft } from "phosphor-react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Container } from "./styles";
 import theme from "../../styles/theme";
 
-type BackButtonProps = {
+type ArrowBackProps = {
   color?: string;
   style?: object;
 };
 
-export function BackButton({ color }: BackButtonProps) {
+export function ArrowBack({ color }: ArrowBackProps) {
   const navigation = useNavigation();
 
   return (

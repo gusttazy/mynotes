@@ -3,7 +3,6 @@ import {
   SafeContainer,
   HeaderImage,
   Title,
-  Subtitle,
   ButtonContainer,
   LoginText,
   LoginLink,
@@ -14,8 +13,8 @@ import {
   ContentContainer,
 } from "./styles";
 import { Input } from "../../components/Input";
-import { ButtonHome } from "../../components/Button";
-import { BackButton } from "../../components/BackButton";
+import { Button } from "../../components/Button";
+import { ArrowBack } from "../../components/ArrowBack";
 import { Alert, Keyboard, KeyboardAvoidingView, Platform } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { supabase } from "../../config/supabase";
@@ -92,12 +91,11 @@ export default function Register({ navigation }: RegisterProps) {
           keyboardShouldPersistTaps="handled"
         >
           <ContentContainer>
-            <BackButton />
+            <ArrowBack />
 
-            <HeaderImage source={require("../../assets/images/register.png")} />
+            <HeaderImage source={require("../../images/register.png")} />
 
-            <Title>Crie sua Conta</Title>
-            <Subtitle>Preencha com suas informações</Subtitle>
+            <Title>Criar conta</Title>
 
             <InputContainer>
               <Input
@@ -135,7 +133,7 @@ export default function Register({ navigation }: RegisterProps) {
             </InputContainer>
 
             <ButtonContainer>
-              <ButtonHome 
+              <Button 
                 title={loading ? "Carregando..." : "Criar Conta"} 
                 onPress={handleRegister}
                 disabled={loading}

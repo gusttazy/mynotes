@@ -1,3 +1,12 @@
+/**
+ * Componente NoteAddModal
+ * 
+ * Este componente é um modal que permite ao usuário criar uma nova anotação.
+ * Ele contém:
+ * - Campo para inserir o título da nova anotação
+ * - Botão para cancelar a operação
+ * - Botão para salvar a nova anotação
+ */
 import React, { useState, useEffect } from "react";
 import { Modal, TouchableWithoutFeedback, Keyboard } from "react-native";
 import {
@@ -12,25 +21,29 @@ import {
 } from "./styles";
 import { Input } from "../Input";
 
-type ActivityModalProps = {
-  visible: boolean;
-  onClose: () => void;
-  onSave: (activityName: string) => void;
+// Define as propriedades que o modal recebe
+type NoteAddModalProps = {
+  visible: boolean;           // Controla a visibilidade do modal
+  onClose: () => void;       // Função chamada ao fechar o modal
+  onSave: (activityName: string) => void;  // Função chamada ao salvar a nova anotação
 };
 
-export default function ActivityModal({
+export default function NoteAddModal({
   visible,
   onClose,
   onSave,
-}: ActivityModalProps) {
+}: NoteAddModalProps) {
+  // Estado para controlar o texto do título da nova anotação
   const [activityName, setActivityName] = useState("");
 
+  // Limpa o campo de texto quando o modal é fechado
   useEffect(() => {
     if (!visible) {
       setActivityName("");
     }
   }, [visible]);
 
+  // Função que salva a nova anotação
   const handleSave = () => {
     onSave(activityName);
   };
@@ -42,6 +55,7 @@ export default function ActivityModal({
       visible={visible}
       onRequestClose={onClose}
     >
+      {/* Permite fechar o teclado ao tocar fora do campo de texto */}
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ModalContainer>
           <ModalContent>
@@ -53,6 +67,7 @@ export default function ActivityModal({
               autoFocus={true}
             />
 
+            {/* Botões de ação do modal */}
             <ButtonsContainer>
               <CancelButton onPress={onClose}>
                 <CancelButtonText>Cancelar</CancelButtonText>

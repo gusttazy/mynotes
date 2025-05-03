@@ -27,19 +27,11 @@ export const HeaderImage = styled(Image)`
 `;
 
 export const Title = styled(Text)`
-  font-size: 35px;
+  font-size: 50px;
   color: ${theme.colors.roxoPrincipal};
   font-family: ${theme.fonts.extraBold};
   text-align: center;
-  margin-bottom: 5px;
-`;
-
-export const Subtitle = styled(Text)`
-  font-size: 14px;
-  color: ${theme.colors.roxoSecundario};
-  font-family: ${theme.fonts.semiBold};
-  text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
 `;
 
 export const InputContainer = styled(View)`

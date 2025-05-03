@@ -6,7 +6,7 @@ import {
   Raleway_500Medium,
   Raleway_600SemiBold,
   Raleway_700Bold,
-  Raleway_800ExtraBold, 
+  Raleway_800ExtraBold,
 } from "@expo-google-fonts/raleway";
 import * as SplashScreen from "expo-splash-screen";
 
@@ -24,7 +24,7 @@ export function AppProvider({ children }: AppProviderProps) {
     Raleway_500Medium,
     Raleway_600SemiBold,
     Raleway_700Bold,
-    Raleway_800ExtraBold, 
+    Raleway_800ExtraBold,
   });
 
   const [isReady, setIsReady] = useState(false);

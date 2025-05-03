@@ -1,3 +1,13 @@
+/**
+ * Tela NoteDetails
+ * 
+ * Esta tela exibe e permite editar os detalhes de uma anotação específica.
+ * Funcionalidades:
+ * - Exibe o título da anotação
+ * - Permite editar o título
+ * - Exibe e permite editar o conteúdo da anotação
+ * - Salva automaticamente as alterações ao voltar
+ */
 import React, { useState, useEffect } from "react";
 import { Platform, KeyboardAvoidingView, ScrollView } from "react-native";
 import {
@@ -7,38 +17,47 @@ import {
   ContentContainer,
   ContentInput,
 } from "./styles";
-import FloatingActionButton from "../../components/TaskManagerButton";
-import { BackButton } from "../../components/BackButton";
+import { ArrowBack } from "../../components/ArrowBack";
 
+// Define as propriedades de navegação e rota que a tela recebe
 type NoteDetailsScreenProps = {
   route: {
     params: {
-      activityId?: string;
-      title?: string;
-      content?: string;
+      activityId?: string;  // ID da anotação
+      title?: string;       // Título da anotação
+      content?: string;     // Conteúdo da anotação
     };
   };
   navigation: any;
 };
 
-export default function ActivityDetails({
+export default function NoteDetails({
   route,
   navigation,
 }: NoteDetailsScreenProps) {
-  const { activityId, title: initialTitle, content: initialContent } = route.params || {};
+  // Extrai os parâmetros da rota com valores padrão
+  const {
+    activityId,
+    title: initialTitle,
+    content: initialContent,
+  } = route.params || {};
+
+  // Estados para controlar o título e conteúdo da anotação
   const [title, setTitle] = useState(initialTitle || "Atividade 01");
   const [noteContent, setNoteContent] = useState(initialContent || "");
 
+  // Configura o cabeçalho da tela para não ser exibido
   useEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   }, [navigation]);
 
+  // Função que salva as alterações e volta para a tela anterior
   const handleSaveNote = () => {
     navigation.navigate("AppScreen", {
       updatedActivity: {
-      id: activityId,
+        id: activityId,
         title,
         content: noteContent,
       },
@@ -47,8 +66,9 @@ export default function ActivityDetails({
 
   return (
     <SafeContainer>
+      {/* Cabeçalho da tela com botão de voltar e campo de título */}
       <HeaderContainer>
-        <BackButton
+        <ArrowBack
           color="#fff"
           style={{ position: "absolute", top: 40, left: 10 }}
         />
@@ -61,6 +81,7 @@ export default function ActivityDetails({
         />
       </HeaderContainer>
 
+      {/* Área de conteúdo da anotação */}
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{ flex: 1 }}
@@ -78,8 +99,6 @@ export default function ActivityDetails({
           </ContentContainer>
         </ScrollView>
       </KeyboardAvoidingView>
-
-      <FloatingActionButton onSave={handleSaveNote} />
     </SafeContainer>
   );
 }

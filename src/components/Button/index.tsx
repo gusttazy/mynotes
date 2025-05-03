@@ -3,7 +3,7 @@ import { ButtonProps } from "./types";
 import { StyledButton } from "./styles";
 import theme from "../../styles/theme";
 
-export function ButtonHome({ title, onPress, style, disabled }: ButtonProps) {
+export function Button({ title, onPress, style, disabled }: ButtonProps) {
   return (
     <StyledButton 
       mode="contained" 

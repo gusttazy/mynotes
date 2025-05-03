@@ -3,8 +3,8 @@ import { TouchableOpacity } from "react-native";
 import { Text } from "react-native-paper";
 import theme from "../../styles/theme";
 
-export const ActivityCardContainer = styled(TouchableOpacity)`
-  background-color: #F4F2FF;
+export const NoteCardContainer = styled(TouchableOpacity)`
+  background-color: #f4f2ff;
   border-radius: 16px;
   padding: 60px;
   margin: 8px 20px;
@@ -14,7 +14,7 @@ export const ActivityCardContainer = styled(TouchableOpacity)`
   align-items: center;
 `;
 
-export const ActivityText = styled(Text)`
+export const NoteText = styled(Text)`
   font-size: 20px;
   color: ${theme.colors.roxoPrincipal};
   font-family: ${theme.fonts.bold};

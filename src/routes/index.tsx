@@ -1,6 +1,18 @@
+/**
+ * Arquivo de Rotas
+ * 
+ * Este arquivo define a navegação do aplicativo, incluindo:
+ * - Definição das rotas disponíveis
+ * - Configuração do navegador
+ * - Gerenciamento de autenticação
+ * - Transições entre telas
+ */
 import React, { useEffect, useState, useCallback, Suspense } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  CardStyleInterpolators,
+} from "@react-navigation/stack";
 import { View, ActivityIndicator } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import theme from "../styles/theme";
@@ -8,24 +20,25 @@ import { supabase } from "../config/supabase";
 import { Session } from "@supabase/supabase-js";
 
 // Importações diretas das telas
-import Home from "../screens/Home";
+import Welcome from "../screens/Welcome";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
-import AppScreen from "../screens/AppScreen";
-import ActivityDetails from "../screens/ActivityDetails";
+import Home from "../screens/Home";
+import NoteDetails from "../screens/NoteDetails";
 
+// Define os tipos de parâmetros que cada rota pode receber
 export type RootStackParamList = {
-  Home: undefined;
+  Welcome: undefined;
   Login: undefined;
   Register: undefined;
-  AppScreen: undefined;
-  ActivityDetails: { activityId?: string; title?: string; content?: string };
+  Home: undefined;
+  NoteDetails: { activityId?: string; title?: string; content?: string };
 };
 
+// Cria o navegador de pilha
 const Stack = createStackNavigator<RootStackParamList>();
 
-SplashScreen.preventAutoHideAsync();
-
+// Componente de tela de carregamento
 const LoadingScreen = () => (
   <View
     style={{
@@ -40,45 +53,53 @@ const LoadingScreen = () => (
 );
 
 const Routes = () => {
-  const [isReady, setIsReady] = useState(false);
+  // Estado para controlar a sessão do usuário
   const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [appIsReady, setAppIsReady] = useState(false);
 
-  const loadResourcesAsync = useCallback(async () => {
-    try {
-      setIsReady(true);
-      await SplashScreen.hideAsync();
-    } catch (error) {
-      console.warn(error);
+  // Carrega a sessão do usuário ao iniciar o app
+  useEffect(() => {
+    async function prepare() {
+      try {
+        // Mantém a tela de splash visível enquanto carrega
+        await SplashScreen.preventAutoHideAsync();
+        
+        // Carrega a sessão do Supabase
+        const { data: { session } } = await supabase.auth.getSession();
+        setSession(session);
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setAppIsReady(true);
+      }
     }
+
+    prepare();
   }, []);
 
+  // Esconde a tela de splash quando o app estiver pronto
+  const onLayoutRootView = useCallback(async () => {
+    if (appIsReady) {
+      await SplashScreen.hideAsync();
+    }
+  }, [appIsReady]);
+
+  // Configura o listener de mudança de sessão
   useEffect(() => {
-    loadResourcesAsync();
-  }, [loadResourcesAsync]);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setLoading(false);
-    });
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
-
-    return () => subscription.unsubscribe();
   }, []);
 
-  if (!isReady || loading) {
-    return <LoadingScreen />;
+  if (!appIsReady) {
+    return null;
   }
 
   return (
     <NavigationContainer>
       <Suspense fallback={<LoadingScreen />}>
         <Stack.Navigator
-          initialRouteName={session ? "AppScreen" : "Home"}
+          initialRouteName={session ? "Home" : "Welcome"}
           screenOptions={{
             headerShown: false,
             gestureEnabled: true,
@@ -95,15 +116,15 @@ const Routes = () => {
           {!session ? (
             // Rotas para usuários não autenticados
             <>
-              <Stack.Screen name="Home" component={Home} />
+              <Stack.Screen name="Welcome" component={Welcome} />
               <Stack.Screen name="Login" component={Login} />
               <Stack.Screen name="Register" component={Register} />
             </>
           ) : (
             // Rotas para usuários autenticados
             <>
-              <Stack.Screen name="AppScreen" component={AppScreen} />
-              <Stack.Screen name="ActivityDetails" component={ActivityDetails} />
+              <Stack.Screen name="Home" component={Home} />
+              <Stack.Screen name="NoteDetails" component={NoteDetails} />
             </>
           )}
         </Stack.Navigator>
