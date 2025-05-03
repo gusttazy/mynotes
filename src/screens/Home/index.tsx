@@ -29,7 +29,7 @@ import ActivityModal from "../../components/NoteAddModal";
 import DeleteConfirmationModal from "../../components/NoteRemoveModal";
 import { Input } from "../../components/Input";
 import { supabase } from "../../config/supabase";
-import theme from "../../styles/theme";
+import theme from "../../constants/theme";
 
 // Define as propriedades de navegação que a tela recebe
 type AppScreenProps = {

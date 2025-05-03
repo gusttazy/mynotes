@@ -1,7 +1,7 @@
 import styled from "@emotion/native";
 import { SafeAreaView, View } from "react-native";
 import { Text } from "react-native-paper";
-import theme from "../../styles/theme";
+import theme from "../../constants/theme";
 
 export const SafeContainer = styled(SafeAreaView)`
   flex: 1;

@@ -1,7 +1,7 @@
 import styled from "@emotion/native";
 import { TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import theme from "../../styles/theme";
+import theme from "../../constants/theme";
 
 export const NoteButtonContainer = styled(TouchableOpacity)`
   position: absolute;

@@ -1,6 +1,6 @@
 import styled from "@emotion/native";
 import { TextInput, View } from "react-native";
-import theme from "../../styles/theme";
+import theme from "../../constants/theme";
 
 export const Container = styled(View)`
   flex-direction: row;

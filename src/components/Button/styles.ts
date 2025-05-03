@@ -1,6 +1,6 @@
 import styled from "@emotion/native";
 import { Button } from "react-native-paper";
-import theme from "../../styles/theme";
+import theme from "../../constants/theme";
 
 export const StyledButton = styled(Button)`
   background-color: ${theme.colors.roxoPrincipal};

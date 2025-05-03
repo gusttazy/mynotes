@@ -1,7 +1,7 @@
 import styled from "@emotion/native";
 import { View, TouchableOpacity } from "react-native";
 import { Text } from "react-native-paper";
-import theme from "../../styles/theme";
+import theme from "../../constants/theme";
 
 export const ModalContainer = styled(View)`
   flex: 1;

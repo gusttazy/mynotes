@@ -1,6 +1,6 @@
 import styled from "@emotion/native";
 import { SafeAreaView, View, TextInput } from "react-native";
-import theme from "../../styles/theme";
+import theme from "../../constants/theme";
 
 export const SafeContainer = styled(SafeAreaView)`
   flex: 1;

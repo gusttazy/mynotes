@@ -1,7 +1,7 @@
 import React from "react";
 import { ButtonProps } from "./types";
 import { StyledButton } from "./styles";
-import theme from "../../styles/theme";
+import theme from "../../constants/theme";
 
 export function Button({ title, onPress, style, disabled }: ButtonProps) {
   return (

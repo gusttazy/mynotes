@@ -10,7 +10,7 @@ import {
 } from "@expo-google-fonts/raleway";
 import * as SplashScreen from "expo-splash-screen";
 
-import theme from "../styles/theme";
+import theme from "../constants/theme";
 
 interface AppProviderProps {
   children: ReactNode;

@@ -1,7 +1,7 @@
 import styled from "@emotion/native";
 import { TouchableOpacity } from "react-native";
 import { Text } from "react-native-paper";
-import theme from "../../styles/theme";
+import theme from "../../constants/theme";
 
 export const NoteCardContainer = styled(TouchableOpacity)`
   background-color: #f4f2ff;

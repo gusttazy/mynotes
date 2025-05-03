@@ -15,7 +15,7 @@ import {
 } from "@react-navigation/stack";
 import { View, ActivityIndicator } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
-import theme from "../styles/theme";
+import theme from "../constants/theme";
 import { supabase } from "../config/supabase";
 import { Session } from "@supabase/supabase-js";
 

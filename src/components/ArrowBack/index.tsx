@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowLeft } from "phosphor-react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Container } from "./styles";
-import theme from "../../styles/theme";
+import theme from "../../constants/theme";
 
 type ArrowBackProps = {
   color?: string;
