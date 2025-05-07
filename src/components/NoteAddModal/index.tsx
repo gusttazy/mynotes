@@ -1,31 +1,19 @@
-/**
- * Componente NoteAddModal
- * 
- * Este componente é um modal que permite ao usuário criar uma nova anotação.
- * Ele contém:
- * - Campo para inserir o título da nova anotação
- * - Botão para cancelar a operação
- * - Botão para salvar a nova anotação
- */
 import React, { useState, useEffect } from "react";
-import { Modal, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { Modal, TouchableWithoutFeedback, Keyboard, View } from "react-native";
 import {
   ModalContainer,
   ModalContent,
   ModalTitle,
   ButtonsContainer,
-  CancelButton,
-  CancelButtonText,
-  SaveButton,
-  SaveButtonText,
 } from "./styles";
 import { Input } from "../Input";
+import { Button } from "../Button";
+import theme from "../../constants/theme";
 
-// Define as propriedades que o modal recebe
 type NoteAddModalProps = {
-  visible: boolean;           // Controla a visibilidade do modal
-  onClose: () => void;       // Função chamada ao fechar o modal
-  onSave: (activityName: string) => void;  // Função chamada ao salvar a nova anotação
+  visible: boolean;
+  onClose: () => void;
+  onSave: (activityName: string) => void;
 };
 
 export default function NoteAddModal({
@@ -33,17 +21,14 @@ export default function NoteAddModal({
   onClose,
   onSave,
 }: NoteAddModalProps) {
-  // Estado para controlar o texto do título da nova anotação
   const [activityName, setActivityName] = useState("");
 
-  // Limpa o campo de texto quando o modal é fechado
   useEffect(() => {
     if (!visible) {
       setActivityName("");
     }
   }, [visible]);
 
-  // Função que salva a nova anotação
   const handleSave = () => {
     onSave(activityName);
   };
@@ -55,7 +40,6 @@ export default function NoteAddModal({
       visible={visible}
       onRequestClose={onClose}
     >
-      {/* Permite fechar o teclado ao tocar fora do campo de texto */}
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ModalContainer>
           <ModalContent>
@@ -66,16 +50,37 @@ export default function NoteAddModal({
               onChangeText={setActivityName}
               autoFocus={true}
             />
-
-            {/* Botões de ação do modal */}
             <ButtonsContainer>
-              <CancelButton onPress={onClose}>
-                <CancelButtonText>Cancelar</CancelButtonText>
-              </CancelButton>
+              <Button
+                title="Não"
+                onPress={onClose}
+                style={{
+                  flex: 1,
+                  height: 50,
+                  marginRight: 10,
+                  borderRadius: 10,
+                  borderWidth: 1,
+                  borderColor: theme.colors.roxoPrincipal,
+                  backgroundColor: theme.colors.background,
+                }}
+                labelStyle={{
+                  fontSize: 18,
+                  fontFamily: theme.fonts.extraBold,
+                  color: theme.colors.roxoPrincipal,
+                }}
+              />
 
-              <SaveButton onPress={handleSave}>
-                <SaveButtonText>Salvar</SaveButtonText>
-              </SaveButton>
+              <Button
+                title="Salvar"
+                onPress={handleSave}
+                style={{
+                  flex: 1,
+                  height: 50,
+                  marginLeft: 10,
+                  borderRadius: 10,
+                  backgroundColor: theme.colors.roxoPrincipal,
+                }}
+              />
             </ButtonsContainer>
           </ModalContent>
         </ModalContainer>

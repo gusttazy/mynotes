@@ -37,35 +37,3 @@ export const ButtonsContainer = styled(View)`
   justify-content: space-between;
   margin-top: 10px;
 `;
-
-export const CancelButton = styled(TouchableOpacity)`
-  flex: 1;
-  height: 50px;
-  justify-content: center;
-  align-items: center;
-  margin-right: 10px;
-  border-radius: 10px;
-  border: 1px solid ${theme.colors.roxoPrincipal};
-`;
-
-export const CancelButtonText = styled(Text)`
-  font-size: 16px;
-  color: ${theme.colors.roxoPrincipal};
-  font-family: ${theme.fonts.bold};
-`;
-
-export const SaveButton = styled(TouchableOpacity)`
-  flex: 1;
-  height: 50px;
-  justify-content: center;
-  align-items: center;
-  margin-left: 10px;
-  border-radius: 10px;
-  background-color: ${theme.colors.roxoPrincipal};
-`;
-
-export const SaveButtonText = styled(Text)`
-  font-size: 16px;
-  color: white;
-  font-family: ${theme.fonts.bold};
-`;
